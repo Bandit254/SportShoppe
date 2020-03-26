@@ -5,9 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\NewFolder1\**" />
     <Compile Remove="SportShoppe.Tests\**" />
+    <Content Remove="Models\NewFolder1\**" />
     <Content Remove="SportShoppe.Tests\**" />
+    <EmbeddedResource Remove="Models\NewFolder1\**" />
     <EmbeddedResource Remove="SportShoppe.Tests\**" />
+    <None Remove="Models\NewFolder1\**" />
     <None Remove="SportShoppe.Tests\**" />
   </ItemGroup>
 
