@@ -10,6 +10,7 @@ using Xunit;
 using Moq;
 using SportShoppe.Models.ViewModels;
 using SportShoppe.Infrastructure;
+using SportShoppe.Components;
 
 namespace SportShoppe.Tests
 {
