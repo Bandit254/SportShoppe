@@ -107,7 +107,7 @@ namespace SportShoppe.Tests
                 new Product {ProductID = 2, Name = "P2", Category = "Cat2" },
                 new Product {ProductID = 3, Name = "P3", Category = "Cat1" },
                 new Product {ProductID = 4, Name = "P4", Category = "Cat2" },
-                new Product {ProductID = 5, Name = "P5", Category = "Cat5" }
+                new Product {ProductID = 5, Name = "P5", Category = "Cat3" }
             }).AsQueryable<Product>());
 
             ProductController target = new ProductController(mock.Object);

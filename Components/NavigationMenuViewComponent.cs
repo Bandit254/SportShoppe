@@ -9,7 +9,7 @@ namespace SportShoppe.Components
 {
     public class NavigationMenuViewComponent : ViewComponent
     {
-        private IProductRepository repository;
+        private readonly IProductRepository repository;
         public NavigationMenuViewComponent(IProductRepository repo)
         {
             repository = repo;

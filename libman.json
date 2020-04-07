@@ -5,6 +5,10 @@
     {
       "library": "bootstrap@latest",
       "destination": "wwwroot/lib/bootstrap/"
+    },
+    {
+      "library": "fontawesome@latest",
+      "destination": "wwwroot/lib/fontawesome"
     }
   ]
 }
