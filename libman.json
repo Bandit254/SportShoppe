@@ -9,6 +9,21 @@
     {
       "library": "fontawesome@latest",
       "destination": "wwwroot/lib/fontawesome"
+    },
+    {
+      "library": "jquery@3.5.0",
+      "destination": "wwwroot/lib/jquery"
     }
-  ]
+  ,
+{
+  "provider": "cdnjs",
+  "library": "jquery-validation-unobtrusive@3.2.11",
+  "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
+}
+,
+{
+  "library": "jquery-validation@1.19.1",
+  "destination": "wwwroot/lib/jquery-validation/"
+}
+]
 }
