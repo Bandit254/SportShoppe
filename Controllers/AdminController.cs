@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using SportShoppe.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SportShoppe.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductRepository repository;
@@ -41,6 +43,12 @@ namespace SportShoppe.Controllers
                 TempData["message"] = $"{deletedProduct.Name} was deleted";
             }
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public IActionResult SeedDatabase()
+        {
+            SeedData.EnsurePopulated(HttpContext.RequestServices);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

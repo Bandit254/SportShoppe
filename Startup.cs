@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using SportShoppe.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace SportShoppe
 {
@@ -20,10 +21,15 @@ namespace SportShoppe
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
-            services.AddTransient<IProductRepository, EFProductRepository>();
-            services.AddTransient<IOrderRepository, EFOrderRepository>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                 Configuration["Data:SportShoppeProducts:ConnectionString"]));
+            services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(
+                Configuration["Data:SportShoppeIdentity:ConnectionString"]));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
+            services.AddTransient<IProductRepository, EFProductRepository>();
+            services.AddTransient<IOrderRepository, EFOrderRepository>();
             services.AddMemoryCache();
             services.AddSession();
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
@@ -37,9 +43,14 @@ namespace SportShoppe
             {
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
-            }            
+            }  
+            else
+            {
+                app.UseExceptionHandler("/Error");
+            }
             app.UseStaticFiles();
             app.UseSession();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -67,7 +78,8 @@ namespace SportShoppe
                     name: "default",
                     template: "{controller=Product}/{action=List}/{id?}");
             });
-            SeedData.EnsurePopulated(app);
+            //SeedData.EnsurePopulated(app);
+            //IdentitySeedData.EnsurePopulated(app);
 
             
             /*
